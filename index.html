@@ -34,6 +34,7 @@
       <a href="#about"><span class="lang-zh">关于我们</span><span class="lang-en">About</span></a>
       <a href="#teachers"><span class="lang-zh">师资团队</span><span class="lang-en">Teachers</span></a>
       <a href="#programs"><span class="lang-zh">课程体系</span><span class="lang-en">Programs</span></a>
+      <a href="#play"><span class="lang-zh">试玩棋盘</span><span class="lang-en">Play</span></a>
       <a href="#honors"><span class="lang-zh">荣誉履历</span><span class="lang-en">Honors</span></a>
       <a href="#location"><span class="lang-zh">教室地址</span><span class="lang-en">Location</span></a>
       <a href="#contact" class="nav-cta"><span class="lang-zh">免费试听</span><span class="lang-en">Free Trial</span></a>
@@ -50,6 +51,19 @@
     </div>
   </div>
 </header>
+
+<div class="swa-ribbon">
+  <div class="wrap swa-ribbon-inner">
+    <span class="swa-seal" aria-hidden="true">SWA</span>
+    <p>
+      <span class="lang-zh">创办人裴令令老师现任<strong>新加坡围棋协会（Singapore Weiqi Association）秘书长</strong>，长期参与协会官方赛事组织与国际交流</span>
+      <span class="lang-en">Founder Ms. Pei Lingling currently serves as <strong>Secretary-General of the Singapore Weiqi Association (SWA)</strong>, and has long been involved in the association's official tournament organization and international exchange</span>
+    </p>
+    <a href="https://weiqi.org.sg/" target="_blank" rel="noopener">
+      <span class="lang-zh">访问协会官网 ↗</span><span class="lang-en">Visit SWA Official Site ↗</span>
+    </a>
+  </div>
+</div>
 
 <main id="top">
 
@@ -136,10 +150,13 @@
       </div>
 
       <div class="teacher-grid">
-        <article class="teacher-card">
+        <article class="teacher-card teacher-card-featured">
+          <span class="teacher-badge">
+            <span class="lang-zh">现任新加坡围棋协会秘书长</span><span class="lang-en">Serving SWA Secretary-General</span>
+          </span>
           <div class="teacher-card-head">
             <h3><span class="lang-zh">裴令令 老师</span><span class="lang-en">Ms. Pei Lingling</span></h3>
-            <p class="teacher-role"><span class="lang-zh">创始人 · 新加坡围棋协会秘书</span><span class="lang-en">Founder · Secretary, Singapore Weiqi Association</span></p>
+            <p class="teacher-role"><span class="lang-zh">创始人 · 新加坡围棋协会秘书长</span><span class="lang-en">Founder · Secretary-General, Singapore Weiqi Association</span></p>
           </div>
           <ul class="teacher-facts">
             <li><span class="lang-zh">新加坡科技设计大学（SUTD）围棋社创始人，七年围棋教学与组织经验。</span><span class="lang-en">Founder of the SUTD (Singapore University of Technology and Design) Go Club; 7 years of teaching and organizing experience.</span></li>
@@ -198,8 +215,46 @@
     </div>
   </section>
 
+  <!-- PLAY -->
+  <section id="play" class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker"><span class="lang-zh">试玩棋盘</span><span class="lang-en">Try the Board</span></span>
+        <h2><span class="lang-zh">先落几手，感受一下</span><span class="lang-en">Place a Few Stones, See How It Feels</span></h2>
+        <p><span class="lang-zh">九路棋盘，双人同屏轮流落子，支持提子与打劫判断——不用下载任何App，直接在网页里试一试。</span><span class="lang-en">A 9×9 board for two players to take turns on the same screen, with capturing and basic ko detection — no app required, just play right here.</span></p>
+      </div>
+
+      <div class="goban-widget">
+        <div class="goban-canvas-wrap">
+          <canvas id="gobanCanvas" width="480" height="480" aria-label="Weiqi practice board"></canvas>
+        </div>
+        <div class="goban-panel">
+          <div class="goban-status">
+            <span class="goban-turn-dot" id="gobanTurnDot" aria-hidden="true"></span>
+            <span id="gobanTurnLabel">
+              <span class="lang-zh">轮到黑棋</span><span class="lang-en">Black to play</span>
+            </span>
+          </div>
+          <div class="goban-captures">
+            <div><span class="lang-zh">黑方提子</span><span class="lang-en">Black captures</span>: <strong id="gobanCapB">0</strong></div>
+            <div><span class="lang-zh">白方提子</span><span class="lang-en">White captures</span>: <strong id="gobanCapW">0</strong></div>
+          </div>
+          <div class="goban-actions">
+            <button type="button" id="gobanPass" class="btn btn-ghost btn-sm"><span class="lang-zh">虚着</span><span class="lang-en">Pass</span></button>
+            <button type="button" id="gobanUndo" class="btn btn-ghost btn-sm"><span class="lang-zh">悔棋</span><span class="lang-en">Undo</span></button>
+            <button type="button" id="gobanReset" class="btn btn-primary btn-sm"><span class="lang-zh">重新开始</span><span class="lang-en">Reset</span></button>
+          </div>
+          <p class="goban-hint">
+            <span class="lang-zh">这是一块本地练习棋盘，双方轮流点击落子，仅供体验规则，不保存棋谱。</span>
+            <span class="lang-en">This is a local practice board — players take turns clicking to place stones. It's for a quick feel of the rules only; games are not saved.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- HONORS -->
-  <section id="honors" class="section section-alt">
+  <section id="honors" class="section">
     <div class="wrap">
       <div class="section-head">
         <span class="kicker"><span class="lang-zh">荣誉履历</span><span class="lang-en">Honors & Track Record</span></span>
@@ -235,7 +290,7 @@
   </section>
 
   <!-- LOCATION -->
-  <section id="location" class="section">
+  <section id="location" class="section section-alt">
     <div class="wrap location-grid">
       <div>
         <span class="kicker"><span class="lang-zh">教室地址</span><span class="lang-en">Location</span></span>
@@ -293,9 +348,13 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <p>&copy; <span id="year"></span> <span class="lang-zh">小裴围棋课室</span><span class="lang-en">Xiao Pei Weiqi Classroom</span>. <span class="lang-zh">保留所有权利。</span><span class="lang-en">All rights reserved.</span></p>
+    <a href="https://weiqi.org.sg/" target="_blank" rel="noopener" class="footer-link">
+      <span class="lang-zh">新加坡围棋协会官网 ↗</span><span class="lang-en">Singapore Weiqi Association ↗</span>
+    </a>
   </div>
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/goban.js"></script>
 </body>
 </html>

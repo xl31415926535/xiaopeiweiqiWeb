@@ -102,11 +102,44 @@ img{max-width:100%;display:block;}
 .btn{
   display:inline-block; padding:14px 30px; font-size:0.92rem; letter-spacing:0.04em;
   border-radius:2px; transition:all .25s ease; border:1px solid transparent;
+  cursor:pointer; font-family:var(--sans-zh); background:none;
 }
 .btn-primary{background:var(--gold); color:var(--ink); font-weight:500;}
 .btn-primary:hover{background:var(--gold-soft);}
 .btn-ghost{border-color:var(--line); color:var(--paper);}
 .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn-sm{padding:9px 18px; font-size:0.82rem;}
+
+/* ---------- SWA affiliation ribbon ---------- */
+.swa-ribbon{
+  background:linear-gradient(90deg, var(--ink-3), var(--ink-2));
+  border-bottom:1px solid var(--line);
+}
+.swa-ribbon-inner{
+  display:flex; align-items:center; gap:18px; padding:14px 28px; flex-wrap:wrap;
+}
+.swa-seal{
+  flex:none; width:40px; height:40px; border-radius:50%; border:1px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--serif-en); font-size:0.68rem; letter-spacing:0.05em; color:var(--gold);
+}
+.swa-ribbon-inner p{
+  margin:0; flex:1 1 420px; font-size:0.86rem; color:var(--paper-dim); line-height:1.6;
+}
+.swa-ribbon-inner p strong{color:var(--paper); font-weight:600;}
+.swa-ribbon-inner a{
+  flex:none; font-size:0.82rem; color:var(--gold); white-space:nowrap;
+  border-bottom:1px solid transparent;
+}
+.swa-ribbon-inner a:hover{border-bottom-color:var(--gold);}
+
+/* teacher badge */
+.teacher-card-featured{position:relative;}
+.teacher-badge{
+  display:inline-block; margin-bottom:16px; padding:5px 14px; border-radius:2px;
+  background:var(--gold); color:var(--ink); font-size:0.72rem; letter-spacing:0.06em;
+  font-weight:600; text-transform:uppercase;
+}
 
 /* ---------- Hero ---------- */
 .hero{
@@ -206,9 +239,49 @@ a.contact-card:hover{border-color:var(--gold); transform:translateY(-3px);}
 .contact-label{color:var(--gold); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase;}
 .contact-value{font-size:0.95rem; color:var(--paper);}
 
+/* goban widget */
+.goban-widget{
+  display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:start;
+  justify-content:center;
+}
+.goban-canvas-wrap{
+  background:linear-gradient(160deg, #d9c08a, #b98f4a);
+  padding:18px; border-radius:4px; box-shadow:0 20px 50px rgba(0,0,0,0.45);
+  line-height:0;
+}
+#gobanCanvas{
+  display:block; width:min(420px, 78vw); height:min(420px, 78vw);
+  cursor:pointer; border-radius:2px;
+}
+.goban-canvas-wrap.invalid{animation:goban-shake .26s ease;}
+@keyframes goban-shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-4px);}
+  75%{transform:translateX(4px);}
+}
+.goban-panel{
+  min-width:240px; padding-top:8px; display:flex; flex-direction:column; gap:22px;
+}
+.goban-status{display:flex; align-items:center; gap:10px; font-size:1rem;}
+.goban-turn-dot{
+  width:16px; height:16px; border-radius:50%; background:#111; border:1px solid var(--line);
+  transition:background .2s ease;
+}
+.goban-turn-dot.white{background:#f2ede0;}
+.goban-captures{
+  display:flex; flex-direction:column; gap:6px; font-size:0.9rem; color:var(--paper-dim);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:16px 0;
+}
+.goban-captures strong{color:var(--gold);}
+.goban-actions{display:flex; gap:10px; flex-wrap:wrap;}
+.goban-hint{font-size:0.82rem; color:var(--paper-dim); margin:0;}
+
 /* footer */
 .site-footer{padding:34px 0; border-top:1px solid var(--line); background:var(--ink);}
+.footer-inner{display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; justify-content:center;}
 .footer-inner p{margin:0; color:var(--paper-dim); font-size:0.82rem; text-align:center;}
+.footer-link{color:var(--gold); font-size:0.82rem;}
+.footer-link:hover{text-decoration:underline;}
 
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
@@ -230,4 +303,8 @@ a.contact-card:hover{border-color:var(--gold); transform:translateY(-3px);}
   .nav-toggle{display:flex;}
   .honor-grid, .contact-grid{grid-template-columns:1fr;}
   .hero{min-height:auto; padding-top:40px;}
+  .goban-widget{grid-template-columns:1fr; justify-items:center; text-align:center;}
+  .goban-actions{justify-content:center;}
+  .swa-ribbon-inner{justify-content:center; text-align:center;}
+  .swa-ribbon-inner p{flex-basis:100%;}
 }
