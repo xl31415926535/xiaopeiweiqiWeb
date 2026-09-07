@@ -108,8 +108,10 @@ img{max-width:100%;display:block;}
 .hero{padding:64px 0 40px;}
 .hero-inner{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
 .eyebrow{
+  display:flex; align-items:center; gap:10px;
   color:var(--brown); font-size:0.88rem; margin-bottom:16px; font-weight:700;
 }
+.eyebrow-seal{width:26px; height:26px; object-fit:contain; flex:none;}
 .hero h1{font-size:clamp(2.2rem, 4.5vw, 3.2rem); line-height:1.2;}
 .hero-sub{max-width:520px; color:var(--ink-dim); font-size:1.02rem;}
 .hero-actions{display:flex; gap:14px; margin-top:26px; flex-wrap:wrap;}
@@ -164,7 +166,7 @@ img{max-width:100%;display:block;}
 .teacher-avatar{
   flex:none; width:56px; height:56px; border-radius:50%; background:var(--cream-2);
   display:flex; align-items:center; justify-content:center; font-weight:900; color:var(--brown);
-  font-size:1.2rem;
+  font-size:1.2rem; object-fit:cover;
 }
 .teacher-card-head h3{font-size:1.2rem; margin-bottom:2px;}
 .teacher-role{color:var(--brown); font-size:0.86rem; margin:0; font-weight:500;}
@@ -232,12 +234,40 @@ img{max-width:100%;display:block;}
 /* gallery */
 .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
 .gallery-tile{
-  aspect-ratio:4/3; border:2px dashed var(--line); border-radius:var(--radius);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
-  color:var(--ink-dim); text-align:center; padding:16px; background:#fff;
+  position:relative; aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden;
+  margin:0; background:#fff; box-shadow:0 8px 24px rgba(46,32,19,0.06);
 }
-.gallery-tile svg{color:var(--brown); opacity:0.85;}
-.gallery-tile span{font-size:0.82rem;}
+.gallery-tile img{width:100%; height:100%; object-fit:cover; display:block;}
+.gallery-tile figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:12px 14px;
+  background:linear-gradient(transparent, rgba(0,0,0,0.65));
+  color:#fff; font-size:0.8rem; font-weight:700;
+}
+
+/* honor photo */
+.honor-photo{margin:0 0 28px; border-radius:var(--radius); overflow:hidden; box-shadow:0 8px 24px rgba(46,32,19,0.06);}
+.honor-photo img{width:100%; max-height:420px; object-fit:cover; display:block;}
+.honor-photo figcaption{
+  padding:14px 20px; font-size:0.85rem; color:var(--ink-dim); text-align:center; background:#fff;
+}
+
+/* marquee */
+.marquee-section{overflow:hidden; padding:20px 0;}
+.marquee-track{
+  display:flex; gap:16px; width:max-content;
+  animation:marquee-scroll 40s linear infinite;
+}
+.marquee-track img{
+  width:180px; height:240px; object-fit:cover; border-radius:var(--radius); flex:none;
+  box-shadow:0 8px 20px rgba(46,32,19,0.1);
+}
+@keyframes marquee-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{animation:none; overflow-x:auto;}
+}
 
 /* testimonials */
 .testimonial-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
@@ -327,4 +357,5 @@ a.contact-card:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(46,3
   }
   .contact-grid{grid-template-columns:1fr;}
   .contact-panel{padding:28px;}
+  .marquee-track img{width:130px; height:173px;}
 }
