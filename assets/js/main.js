@@ -94,7 +94,7 @@
       playing = false;
       if (timer) { clearInterval(timer); timer = null; }
       if (autoplayBtn) {
-        autoplayBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#play"></use></svg>';
+        autoplayBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#play"></use></svg>';
         autoplayBtn.setAttribute('aria-label', '开始自动切换 / Start slideshow');
       }
     }
@@ -104,7 +104,7 @@
       if (timer) clearInterval(timer);
       timer = setInterval(function () { next(false); }, 4500);
       if (autoplayBtn) {
-        autoplayBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#pause"></use></svg>';
+        autoplayBtn.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#pause"></use></svg>';
         autoplayBtn.setAttribute('aria-label', '暂停自动切换 / Pause slideshow');
       }
     }
@@ -132,8 +132,8 @@
       marqueeToggle.setAttribute('aria-pressed', paused ? 'true' : 'false');
       marqueeToggle.setAttribute('aria-label', paused ? '继续照片滚动 / Resume gallery' : '暂停照片滚动 / Pause gallery');
       marqueeToggle.innerHTML = paused
-        ? '<svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#play"></use></svg>'
-        : '<svg class="icon" aria-hidden="true"><use href="assets/img/icons.svg#pause"></use></svg>';
+        ? '<svg class="icon" aria-hidden="true"><use href="#play"></use></svg>'
+        : '<svg class="icon" aria-hidden="true"><use href="#pause"></use></svg>';
     });
   }
 

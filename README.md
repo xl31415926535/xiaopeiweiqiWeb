@@ -2,16 +2,17 @@
 
 纯静态网站（HTML + CSS + JS，无数据库、无后端），中英双语（右上角按钮切换）。
 
-**此分支（`design/gpt-academy-style`）说明**：这版设计由 ChatGPT/Codex 基于本仓库其他分支的素材重新搭建，用户从其预览页面导出 `.mhtml` 文件后由 Claude 解析还原为可独立部署的静态文件。原始导出不含 JavaScript（浏览器"保存网页"不会保留脚本）和图标 sprite 文件，语言切换、移动端菜单、首页轮播、课堂照片跑马灯暂停、微信号一键复制等交互逻辑（`assets/js/main.js`）、九路试玩棋盘逻辑（`assets/js/goban.js`）与图标文件（`assets/img/icons.svg`）均为重建，已通过本地功能测试验证一致。
+**此分支（`design/gpt-academy-style`）说明**：这版设计由 ChatGPT/Codex 基于本仓库其他分支的素材重新搭建，用户从其预览页面导出 `.mhtml` 文件后由 Claude 解析还原为可独立部署的静态文件。原始导出不含 JavaScript（浏览器"保存网页"不会保留脚本）和图标文件，语言切换、移动端菜单、首页轮播、课堂照片跑马灯暂停、微信号一键复制等交互逻辑（`assets/js/main.js`）、九路试玩棋盘逻辑（`assets/js/goban.js`）与全部图标均为重建，已通过本地功能测试验证一致。
+
+图标最初做成了外部 `assets/img/icons.svg` 文件、页面里用 `<use href="assets/img/icons.svg#xxx">` 引用，这种写法在正式网址（`https://...`）下没问题，但**直接双击 index.html 用 `file://` 方式打开会被浏览器安全策略拦截，导致图标全部空白**——这是之前反馈"图标缺失"的真实原因。后来改成把所有图标以 `<symbol>` 内联进 `index.html` 的 `<body>` 开头，`<use href="#xxx">` 引用同一个页面内的定义，本地直接打开和正式上线后都能正常显示，不再依赖外部文件加载方式。
 
 ## 目录结构
 
 ```
-index.html              网站主页面（唯一页面，所有内容都在这里）
+index.html              网站主页面（唯一页面，所有内容都在这里，含内联图标 sprite）
 assets/css/style.css    样式
 assets/js/main.js       语言切换 / 移动端导航菜单 / 首页轮播 / 跑马灯暂停 / 微信号复制
 assets/js/goban.js       试玩棋盘（九路围棋，含提子与打劫判断）
-assets/img/icons.svg    图标 sprite
 CNAME                   GitHub Pages 绑定自定义域名用，内容是 peigoacademy.com
 ```
 
