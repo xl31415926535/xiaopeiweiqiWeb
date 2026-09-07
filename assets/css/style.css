@@ -294,6 +294,29 @@ img{max-width:100%;display:block;}
 
 
 /* honors */
+.honor-details{
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  box-shadow:var(--shadow-soft); overflow:hidden;
+}
+.honor-toggle{
+  list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+  gap:20px; padding:22px 26px;
+}
+.honor-toggle::-webkit-details-marker{display:none;}
+.honor-toggle-text{font-size:0.9rem; color:var(--ink-dim); flex:1; line-height:1.6;}
+.honor-toggle-btn{
+  flex:none; display:inline-flex; align-items:center; gap:6px; padding:9px 16px;
+  border:1px solid var(--brown); border-radius:999px; color:var(--brown);
+  font-size:0.82rem; font-weight:700; white-space:nowrap;
+  transition:background .2s ease, color .2s ease;
+}
+.honor-toggle:hover .honor-toggle-btn{background:var(--brown); color:#fff;}
+.honor-toggle-icon{transition:transform .2s ease; flex:none;}
+details[open] .honor-toggle-icon{transform:rotate(180deg);}
+.honor-toggle-btn .show-less{display:none;}
+details[open] .honor-toggle-btn .show-more{display:none;}
+details[open] .honor-toggle-btn .show-less{display:inline;}
+.honor-details .honor-grid{padding:0 26px 26px; border-top:1px solid var(--line); padding-top:26px;}
 .honor-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
 .honor-item{
   background:#fff; border-radius:var(--radius); padding:26px;
@@ -371,6 +394,8 @@ a.contact-card:hover{transform:translateY(-3px); box-shadow:0 8px 20px rgba(46,3
     box-shadow:none; border:none; margin:2px 0 8px 12px; padding:0;
   }
   .contact-grid{grid-template-columns:1fr;}
+  .honor-toggle{flex-direction:column; align-items:flex-start; gap:14px;}
+  .honor-toggle-btn{align-self:flex-start;}
   .contact-panel{padding:28px;}
   .marquee-track img{width:130px; height:173px;}
 }
