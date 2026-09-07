@@ -118,9 +118,7 @@ img{max-width:100%;display:block;}
   display:flex; align-items:center; gap:18px; padding:14px 28px; flex-wrap:wrap;
 }
 .swa-seal{
-  flex:none; width:40px; height:40px; border-radius:50%; border:1px solid var(--gold);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--serif-en); font-size:0.68rem; letter-spacing:0.05em; color:var(--gold);
+  flex:none; width:40px; height:40px; object-fit:contain;
 }
 .swa-ribbon-inner p{
   margin:0; flex:1 1 420px; font-size:0.86rem; color:var(--paper-dim); line-height:1.6;
@@ -185,7 +183,18 @@ img{max-width:100%;display:block;}
   padding:40px; transition:border-color .25s ease;
 }
 .teacher-card:hover{border-color:var(--gold);}
-.teacher-card-head{border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:22px;}
+.teacher-card-head{
+  display:flex; align-items:center; gap:16px;
+  border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:22px;
+}
+.teacher-photo{
+  flex:none; width:72px; height:72px; border-radius:50%; object-fit:cover;
+  border:2px solid var(--gold);
+}
+.teacher-photo-placeholder{
+  display:flex; align-items:center; justify-content:center;
+  background:var(--ink-2); color:var(--gold); font-family:var(--serif-zh); font-size:1.3rem; font-weight:700;
+}
 .teacher-card-head h3{font-size:1.4rem; margin-bottom:6px;}
 .teacher-role{color:var(--gold); font-size:0.88rem; letter-spacing:0.03em; margin:0;}
 .teacher-facts li{
@@ -217,12 +226,39 @@ img{max-width:100%;display:block;}
 /* gallery */
 .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
 .gallery-tile{
-  aspect-ratio:4/3; border:1px dashed var(--line); border-radius:4px;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
-  color:var(--paper-dim); text-align:center; padding:16px; background:var(--ink-2);
+  position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden;
+  margin:0; background:var(--ink-2);
 }
-.gallery-tile svg{color:var(--gold); opacity:0.8;}
-.gallery-tile span{font-size:0.82rem;}
+.gallery-tile img{width:100%; height:100%; object-fit:cover; display:block;}
+.gallery-tile figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:10px 12px;
+  background:linear-gradient(transparent, rgba(0,0,0,0.75));
+  color:var(--paper); font-size:0.8rem;
+}
+
+/* honor photo */
+.honor-photo{margin:0 0 32px; border-radius:4px; overflow:hidden;}
+.honor-photo img{width:100%; max-height:420px; object-fit:cover; display:block;}
+.honor-photo figcaption{
+  padding:12px 4px 0; font-size:0.85rem; color:var(--paper-dim); text-align:center;
+}
+
+/* marquee */
+.marquee-section{overflow:hidden; padding:24px 0; border-bottom:1px solid var(--line);}
+.marquee-track{
+  display:flex; gap:16px; width:max-content;
+  animation:marquee-scroll 40s linear infinite;
+}
+.marquee-track img{
+  width:180px; height:240px; object-fit:cover; border-radius:6px; flex:none;
+}
+@keyframes marquee-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{animation:none; overflow-x:auto;}
+}
 
 /* testimonials */
 .testimonial-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px;}
@@ -327,4 +363,5 @@ a.contact-card:hover{border-color:var(--gold); transform:translateY(-3px);}
   .goban-actions{justify-content:center;}
   .swa-ribbon-inner{justify-content:center; text-align:center;}
   .swa-ribbon-inner p{flex-basis:100%;}
+  .marquee-track img{width:130px; height:173px;}
 }
